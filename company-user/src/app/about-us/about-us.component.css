@@ -1,0 +1,48 @@
+/* src/app/about/about.component.css */
+.about-container {
+    padding: 20px;
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+}
+
+.about-container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #8c52ff;
+}
+
+.about-container section {
+    margin-bottom: 20px;
+    border: 1px solid #8c52ff;
+    border-radius: 8px;
+    padding: 15px;
+    background-color: #f9f9ff;
+}
+
+.about-container h2 {
+    color: #6d30e9;
+    margin-bottom: 10px;
+    text-decoration: underline;
+}
+
+.about-container p {
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.about-container ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.about-container ul li {
+    margin-bottom: 10px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+}
+
+.about-container ul li .icon {
+    margin-right: 10px;
+    font-size: 20px;
+}
