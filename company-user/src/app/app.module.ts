@@ -8,6 +8,8 @@ import { LandingComponent } from './landing/landing.component';
 import { RegisterUserComponent } from './register-user/register-user.component';
 import { RegisterCompanyComponent } from './register-company/register-company.component';
 import { FormsModule } from '@angular/forms';
+import { UserListComponent } from './user-list/user-list.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -16,12 +18,14 @@ import { FormsModule } from '@angular/forms';
     AboutUsComponent,
     LandingComponent,
     RegisterUserComponent,
-    RegisterCompanyComponent
+    RegisterCompanyComponent,
+    UserListComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

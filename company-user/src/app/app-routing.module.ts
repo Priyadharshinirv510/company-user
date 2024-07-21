@@ -4,13 +4,15 @@ import { RegisterCompanyComponent } from './register-company/register-company.co
 import { LandingComponent } from './landing/landing.component';
 import { RegisterUserComponent } from './register-user/register-user.component';
 import { AboutUsComponent } from './about-us/about-us.component';
+import { UserListComponent } from './user-list/user-list.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/landing', pathMatch: 'full' },
   { path: 'landing', component: LandingComponent },
   { path: 'createCompany', component: RegisterCompanyComponent },
   { path: 'createUser', component: RegisterUserComponent },
-  { path: 'aboutUs', component: AboutUsComponent }
+  { path: 'aboutUs', component: AboutUsComponent },
+  {path: 'userlist', component : UserListComponent}
 ];
 
 @NgModule({
