@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-// import { DataService } from '../shared/service/data.service';
-// import { APIConst } from '../shared/constants/api-const';
+import { DataService } from '../shared/service/data.service';
+import { APIConst } from '../shared/constants/api-const';
 
 @Component({
   selector: 'app-register-user',
@@ -10,22 +10,20 @@ import { Component } from '@angular/core';
 export class RegisterUserComponent {
   user: any = { };
 
-  constructor(
-    //private dataService: DataService
-    ) {}
+  constructor(private dataService: DataService) {}
 
   onSubmit() {
-    // this.dataService.postData(APIConst.CREATE_USER,{}).subscribe({
-    //   next: response => {
-    //     console.log('User created successfully', response);
-    //     // Optionally, reset the form after successful submission
-    //     this.resetForm();
-    //   },
-    //   error: err => {
-    //     console.error('Error creating user', err);
-    //     // Handle error if needed
-    //   }
-    // });
+    this.dataService.postData(APIConst.CREATE_USER, this.user).subscribe({
+      next: (response) => {
+        console.log('User created successfully', response);
+        // Optionally, reset the form after successful submission
+        this.resetForm();
+      },
+      error: (err) => {
+        console.error('Error creating user', err);
+        // Handle error if needed
+      }
+    });
   }
 
   resetForm() {

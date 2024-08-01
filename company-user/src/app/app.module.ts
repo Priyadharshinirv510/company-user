@@ -7,7 +7,7 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { LandingComponent } from './landing/landing.component';
 import { RegisterUserComponent } from './register-user/register-user.component';
 import { RegisterCompanyComponent } from './register-company/register-company.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule ,ReactiveFormsModule } from '@angular/forms';
 import { UserListComponent } from './user-list/user-list.component';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -25,7 +25,8 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

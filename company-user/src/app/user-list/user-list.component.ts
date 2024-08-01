@@ -27,7 +27,7 @@ export class UserListComponent implements OnInit, OnDestroy {
          
         },
         error: err => {
-          
+          this.userList = []
         }
       });
       this.subscriptions.push(userListSubscription);
