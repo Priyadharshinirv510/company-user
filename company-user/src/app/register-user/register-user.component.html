@@ -36,17 +36,17 @@
   </div>
 
   <div>
-    <label for="dateOfBirth">Date of Birth:</label>
-    <input type="date" id="dateOfBirth" name="dateOfBirth" [(ngModel)]="user.dateOfBirth">
+    <label for="dob">Date of Birth:</label>
+    <input type="date" id="dob" name="dob" [(ngModel)]="user.dob">
   </div>
 
-  <div>
+  <!-- <div>
     <label for="active">Active:</label>
     <label class="switch">
         <input type="checkbox" id="active" name="active" [(ngModel)]="user.active" #active="ngModel">
         <span class="slider round"></span>
       </label>
- </div>
+ </div> -->
 
   <button type="submit" [disabled]="userForm.invalid">Register Now</button>
 </form>

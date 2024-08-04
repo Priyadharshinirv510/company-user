@@ -1,25 +1,25 @@
 <h2>Register Company!</h2>
 
-<form #companyForm="ngForm" (ngSubmit)="onSubmitCompany()">
+<form [formGroup]="companyForm">
   <div>
     <label for="companyName">Company Name:
-        <span class="required">*</span>
+      <span class="required">*</span>
     </label>
-    <input type="text" id="companyName" name="companyName" [(ngModel)]="company.companyName" required #companyName="ngModel">
-    <div *ngIf="companyName.touched && companyName.invalid" class="error">
+    <input type="text" id="companyName" name="companyName" formControlName="companyName">
+    <div *ngIf="companyForm.controls['companyName'].touched && companyForm.controls['companyName'].invalid" class="error">
         Company Name is required
     </div>
   </div>
 
   <div>
     <label for="companyAddress">Company Address:
-        <span class="required">*</span>
+      <span class="required">*</span>
     </label>
-    <input type="text" id="companyAddress" name="companyAddress" [(ngModel)]="company.companyAddress" required #companyAddress="ngModel">
-    <div *ngIf="companyAddress.touched && companyAddress.invalid" class="error">
+    <input type="text" id="companyAddress" name="companyAddress" formControlName="companyAddress">
+    <div *ngIf="companyForm.controls['companyAddress'].touched && companyForm.controls['companyAddress'].invalid" class="error">
         Company Address is required
     </div>
   </div>
 
-  <button type="submit" [disabled]="companyForm.invalid">Register Now</button>
+  <button type="button" [class.highlight]="companyForm.valid" (click)="OnSumbit()">Register Now</button>
 </form>
