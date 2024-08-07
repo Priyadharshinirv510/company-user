@@ -28,6 +28,18 @@
   box-sizing: border-box;
 }
 
+/* Search result display */
+.search-result {
+  position: absolute;
+  top: 60px; /* Space below the search bar */
+  right: 20px; /* Align with the right edge of the search bar */
+  background-color: #fff;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
 /* Bottom area with card container */
 .bottom-area {
   flex: 1; /* Take up the remaining space */
