@@ -1,9 +1,49 @@
+/* Overall page container */
+.page-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Full viewport height */
+}
+
+/* Top area with search bar */
+.top-area {
+  position: relative; /* Needed for absolute positioning of the search bar */
+  padding: 20px; /* Space around the content */
+  background-color: #f9f9f9; /* Background color for the top area */
+  border-bottom: 1px solid #ddd; /* Optional: border below the top area */
+}
+
+.search-container {
+  position: absolute;
+  top: 20px; /* Space from the top */
+  right: 20px; /* Space from the right edge */
+  width: 300px; /* Adjust the width of the search bar as needed */
+}
+
+.search-container input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+/* Bottom area with card container */
+.bottom-area {
+  flex: 1; /* Take up the remaining space */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px; /* Space around the card container */
+  overflow: auto; /* Handle overflow if necessary */
+}
+
 .card-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr); /* Create 4 equal columns */
   gap: 20px; /* Gap between cards */
   max-width: 1000px; /* Adjust based on total card width and gaps */
-  margin: 0 auto; /* Center the container */
+  width: 100%; /* Full width of the bottom area */
 }
 
 .card {

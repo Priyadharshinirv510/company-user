@@ -1,6 +1,21 @@
-<div class="card-container">
-  <div *ngFor="let item of userList" class="card">
-    <h3>{{ item?.email }}</h3>
-    <p>{{ item?.firstName }} - {{ item?.lastName }}</p>
+
+  <div class="page-container">
+    <!-- Top area with search bar -->
+    <div class="top-area">
+      <div class="search-container">
+        <input type="text" placeholder="Search..." [(ngModel)] =user.userId/>
+      </div>
+    </div>
+
+    <!-- Bottom area with card container -->
+    <div class="bottom-area">
+      <div class="card-container">
+        <div *ngFor="let item of userList" class="card" |filter: user.userId>
+          <h3>{{ item?.email }}</h3>
+          <p>{{ item?.firstName }} - {{ item?.lastName }}</p>
+          <p><span> userId :</span> item?.userId </p>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
+
