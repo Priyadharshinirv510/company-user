@@ -2,6 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DataService } from '../shared/service/data.service';
 import { Subscription } from 'rxjs';
 import { APIConst } from '../shared/constants/api-const';
+import { Router } from '@angular/router'; 
+
 
 @Component({
   selector: 'app-user-list',
@@ -15,7 +17,7 @@ export class UserListComponent implements OnInit, OnDestroy {
   searchUserId: string = '';
   searchResult: any = null; // New property to store the search result
 
-  constructor(private dataService: DataService) {}
+  constructor(private dataService: DataService , private router: Router) {}
 
   ngOnInit(): void {
     this.getUserList();
@@ -43,17 +45,22 @@ export class UserListComponent implements OnInit, OnDestroy {
   filterUserList() {
     if (this.searchUserId) {
       this.filteredUserList = this.userList.filter((user: { userId: any }) => 
-        user.userId && user.userId.toString().includes(this.searchUserId)
-      );
+        user.userId && user.userId.toString() === this.searchUserId
+    );
       this.searchResult = this.filteredUserList.length === 1 ? this.filteredUserList[0] : null;
-      if (this.filteredUserList.length === 1){
-        this.filteredUserList = null
-      }
+      // if (this.filteredUserList.length === 1){
+      //   this.filteredUserList = null
+      // }
     } else {
       this.filteredUserList = this.userList;
       this.searchResult = null;
     }
   }
+
+  onCardClick(userId: any) {
+    this.router.navigate([`/users/getUserById/${userId}`]);
+  }
+
 
   ngOnDestroy(): void {
     this.subscriptions.forEach(subscription => subscription.unsubscribe());

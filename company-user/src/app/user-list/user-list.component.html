@@ -4,23 +4,28 @@
     <div class="search-container">
       <input type="text" placeholder="Search..." [(ngModel)]="searchUserId" (input)="filterUserList()" />
     </div>
-
-    <!-- Search result display -->
-    <div *ngIf="searchResult" class="search-result">
-      <h3>{{ searchResult.email }}</h3>
-      <p>{{ searchResult.firstName }} - {{ searchResult.lastName }}</p>
-      <p><span>userId :</span> {{ searchResult.userId }}</p>
-    </div>
   </div>
 
   <!-- Bottom area with card container -->
   <div class="bottom-area">
     <div class="card-container">
-      <div *ngFor="let item of filteredUserList" class="card">
-        <h3>{{ item?.email }}</h3>
-        <p>{{ item?.firstName }} - {{ item?.lastName }}</p>
-        <p><span>userId :</span> {{ item?.userId }}</p>
+      <!-- Display the search result as the first card if available -->
+      <div *ngIf="searchResult" class="card">
+        <h3>{{ searchResult.email }}</h3>
+        <p>{{ searchResult.firstName }} - {{ searchResult.lastName }}</p>
+        <p><span>userId :</span> {{ searchResult.userId }}</p>
       </div>
+
+      <!-- Display the rest of the filtered user list only if there's no single search result -->
+      <ng-container *ngIf="!searchResult">
+        <ng-container *ngFor="let item of filteredUserList">
+          <div class="card">
+            <h3>{{ item?.email }}</h3>
+            <p>{{ item?.firstName }} - {{ item?.lastName }}</p>
+            <p><span>userId :</span> {{ item?.userId }}</p>
+          </div>
+        </ng-container>
+      </ng-container>
     </div>
   </div>
 </div>
