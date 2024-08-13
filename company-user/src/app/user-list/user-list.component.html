@@ -10,21 +10,21 @@
   <div class="bottom-area">
     <div class="card-container">
       <!-- Display the search result as the first card if available -->
-      <div *ngIf="searchResult" class="card">
-        <h3>{{ searchResult.email }}</h3>
-        <p>{{ searchResult.firstName }} - {{ searchResult.lastName }}</p>
-        <p><span>userId :</span> {{ searchResult.userId }}</p>
-      </div>
+      <ng-container *ngIf="searchResult">
+        <div class="card" (click)="navigateToUserDetail(searchResult.userId)">
+          <h3>{{ searchResult.email }}</h3>
+          <p>{{ searchResult.firstName }} - {{ searchResult.lastName }}</p>
+          <p><span>userId :</span> {{ searchResult.userId }}</p>
+        </div>
+      </ng-container>
 
-      <!-- Display the rest of the filtered user list only if there's no single search result -->
-      <ng-container *ngIf="!searchResult">
-        <ng-container *ngFor="let item of filteredUserList">
-          <div class="card">
-            <h3>{{ item?.email }}</h3>
-            <p>{{ item?.firstName }} - {{ item?.lastName }}</p>
-            <p><span>userId :</span> {{ item?.userId }}</p>
-          </div>
-        </ng-container>
+      <!-- Display the rest of the filtered user list, excluding the search result -->
+      <ng-container *ngFor="let item of filteredUserList">
+        <div *ngIf="!searchResult || searchResult.userId !== item.userId" class="card" (click)="navigateToUserDetail(item.userId)">
+          <h3>{{ item?.email }}</h3>
+          <p>{{ item?.firstName }} - {{ item?.lastName }}</p>
+          <p><span>userId :</span> {{ item?.userId }}</p>
+        </div>
       </ng-container>
     </div>
   </div>

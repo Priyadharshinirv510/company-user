@@ -15,7 +15,7 @@ export class UserListComponent implements OnInit, OnDestroy {
   filteredUserList: any = [];
   subscriptions: Subscription[] = [];
   searchUserId: string = '';
-  searchResult: any = null; // New property to store the search result
+  searchResult: any = null; 
 
   constructor(private dataService: DataService , private router: Router) {}
 
@@ -28,7 +28,7 @@ export class UserListComponent implements OnInit, OnDestroy {
       next: (response) => {
         if (response) {
           this.userList = response;
-          this.filteredUserList = response; // initialize filtered list
+          this.filteredUserList = response;
         } else {
           this.userList = [];
           this.filteredUserList = [];
@@ -57,10 +57,9 @@ export class UserListComponent implements OnInit, OnDestroy {
     }
   }
 
-  onCardClick(userId: any) {
+  navigateToUserDetail(userId: any) {
     this.router.navigate([`/users/getUserById/${userId}`]);
   }
-
 
   ngOnDestroy(): void {
     this.subscriptions.forEach(subscription => subscription.unsubscribe());
