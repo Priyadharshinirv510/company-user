@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { DataService } from '../shared/service/data.service';
 import { APIConst } from '../shared/constants/api-const';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { catchError, of } from 'rxjs';
+
 
 @Component({
   selector: 'app-register-company',
@@ -8,29 +11,41 @@ import { APIConst } from '../shared/constants/api-const';
   styleUrl: './register-company.component.css'
 })
 export class RegisterCompanyComponent {
-  company: any = { };
 
-  constructor(private dataService: DataService) {}
+  companyForm: FormGroup = new FormGroup({
+    companyName : new FormControl('',Validators.required),
+    companyAddress : new FormControl('',Validators.required),
+    coordinates: new FormGroup({
+      latitude: new FormControl(11.354),
+      longitude: new FormControl(34.45)
+    })
 
-  onSubmitCompany() {
-    this.dataService.postData(APIConst.CREATE_USER, this.company).subscribe({
-      next: (response) => {
-        console.log('User created successfully', response);
-        // Optionally, reset the form after successful submission
-        this.resetForm();
-      },
-      error: (err) => {
-        console.error('Error creating user', err);
-        // Handle error if needed
-      }
-    });
+  }); 
+
+    constructor(private dataService: DataService) {}
+  
+
+
+  OnSumbit(){
+    this.dataService.postData(APIConst.CREATE_COMPANY, this.companyForm.value)
+      .pipe(
+        catchError((err) => {
+          console.error('Error creating Company', err);
+          return of(null);
+        })
+      )
+      .subscribe({
+        next: (response) => {
+          if (response) {
+            console.log('Company created successfully', response);
+          }
+        }
+      });
   }
 
-  resetForm() {
-    this.company = {
-      companyName: '',
-      companyAddress: '',
-    };
-  }
-}
 
+  get isFormValid() {
+    return this.companyForm.valid;
+  }
+  
+  }

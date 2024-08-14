@@ -2,30 +2,47 @@
   <!-- Top area with search bar -->
   <div class="top-area">
     <div class="search-container">
-      <input type="text" placeholder="Search..." [(ngModel)]="searchUserId" (input)="filterUserList()" />
+      <input
+        type="text"
+        placeholder="Search..."
+        [(ngModel)]="searchUserId"
+        (input)="filterUserList()"
+      />
     </div>
   </div>
 
   <!-- Bottom area with card container -->
   <div class="bottom-area">
     <div class="card-container">
-      <!-- Display the search result as the first card if available -->
-      <ng-container *ngIf="searchResult">
-        <div class="card" (click)="navigateToUserDetail(searchResult.userId)">
+      <!-- Display the search result if available -->
+      <ng-container *ngIf="searchResult; else fullList">
+        <div
+          class="card"
+          (click)="navigateToUserDetail(searchResult.userId)"
+        >
           <h3>{{ searchResult.email }}</h3>
           <p>{{ searchResult.firstName }} - {{ searchResult.lastName }}</p>
-          <p><span>userId :</span> {{ searchResult.userId }}</p>
+          <p>
+            <span>userId :</span> {{ searchResult.userId }}
+          </p>
         </div>
       </ng-container>
 
-      <!-- Display the rest of the filtered user list, excluding the search result -->
-      <ng-container *ngFor="let item of filteredUserList">
-        <div *ngIf="!searchResult || searchResult.userId !== item.userId" class="card" (click)="navigateToUserDetail(item.userId)">
-          <h3>{{ item?.email }}</h3>
-          <p>{{ item?.firstName }} - {{ item?.lastName }}</p>
-          <p><span>userId :</span> {{ item?.userId }}</p>
-        </div>
-      </ng-container>
+      <!-- Display the filtered user list if no searchResult -->
+      <ng-template #fullList>
+        <ng-container *ngFor="let item of filteredUserList">
+          <div
+            class="card"
+            (click)="navigateToUserDetail(item.userId)"
+          >
+            <h3>{{ item?.email }}</h3>
+            <p>{{ item?.firstName }} - {{ item?.lastName }}</p>
+            <p>
+              <span>userId :</span> {{ item?.userId }}
+            </p>
+          </div>
+        </ng-container>
+      </ng-template>
     </div>
   </div>
 </div>

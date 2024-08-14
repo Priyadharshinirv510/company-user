@@ -1,0 +1,58 @@
+/* Styles for the top area containing the search bar */
+.top-area {
+    position: relative; /* Needed for absolute positioning of the search bar */
+    padding: 20px; /* Space around the content */
+    background-color: #f9f9f9; /* Background color for the top area */
+    border-bottom: 1px solid #ddd; /* Optional: border below the top area */
+  }
+  
+  /* Styles for the search bar container */
+  .search-container {
+    position: absolute;
+    top: 20px; /* Space from the top */
+    right: 20px; /* Space from the right edge */
+    width: 300px; /* Adjust the width of the search bar as needed */
+    margin-bottom: 15px; /* Margin below the search bar */
+  }
+  
+  .search-container input {
+    width: 100%; /* Full width of the search bar container */
+    padding: 10px; /* Padding inside the search bar */
+    border-radius: 5px; /* Rounded corners */
+    border: 1px solid #ccc; /* Border style */
+    box-sizing: border-box; /* Ensure padding and border are included in width */
+  }
+  
+  /* Container for the table to add padding and margins */
+  .table-container {
+    margin: 20px; /* Margin around the table on all sides */
+    padding: 15px; /* Padding inside the table container */
+    background-color: #fff; /* Background color to differentiate the table area */
+    border-radius: 8px; /* Rounded corners for the container */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  }
+  
+  /* Styles for the table displaying company data */
+  table {
+    font-family: 'Poppins', monospace;
+  border-collapse: collapse;
+  width: 100%;
+  margin: 5px;
+
+  }
+  
+  th, td {
+    border: 1px solid #ddd;
+  padding: 8px;
+  }
+  
+  th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #8c52ff   ;
+    color: white;  }
+  
+tr:nth-child(even){background-color: #f2f2f2;}
+
+tr:hover {background-color: #ddd;}

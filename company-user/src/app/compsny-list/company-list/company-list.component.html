@@ -1,1 +1,41 @@
-<p>company-list works!</p>
+<div class="page-container">
+    <!-- Top area with search bar -->
+    <div class="top-area">
+      <div class="search-container">
+        <input type="text" placeholder="Search..." (input)="onSearch($event)" />
+      </div>
+    </div>
+  
+    <!-- Bottom area with table container -->
+    <div class="bottom-area">
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Company ID</th>
+              <th scope="col">Company Name</th>
+              <th scope="col">Company Address</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Display the search result as the first row if available -->
+            <tr *ngIf="searchResult">
+              <td>{{ searchResult.companyId }}</td>
+              <td>{{ searchResult.companyName }}</td>
+              <td>{{ searchResult.companyAddress }}</td>
+            </tr>
+  
+            <!-- Display the rest of the filtered company list -->
+            <ng-container *ngFor="let company of filteredCompanyList">
+              <tr *ngIf="!searchResult || searchResult.companyId !== company.companyId">
+                <td>{{ company?.companyId }}</td>
+                <td>{{ company?.companyName }}</td>
+                <td>{{ company?.companyAddress }}</td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  

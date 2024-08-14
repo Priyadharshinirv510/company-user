@@ -44,6 +44,7 @@ export class DataService {
       .get(`${this.apiUrl}${url}`, { headers: headers })
       .pipe(map((res) => res));
   }
+  
   getDataWithParam(url: any, obj: any) {
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     let httpParams = new HttpParams();
