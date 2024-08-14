@@ -1,1 +1,12 @@
-<p>user-edit works!</p>
+<div class="user-details-container">
+    <div class="user-details-card">
+      <h2>{{ userData?.firstName }} {{ userData?.lastName }}</h2>
+      <p><strong>User ID:</strong> {{ userData?.userId }}</p>
+      <p><strong>Email:</strong> {{ userData?.email }}</p>
+      <p><strong>Designation:</strong> {{ userData?.designation }}</p>
+      <p><strong>Date of Birth:</strong> {{ userData?.dob | date: 'longDate' }}</p>
+      <p><strong>Status:</strong> {{ userData?.active ? 'Active' : 'Inactive' }}</p>
+      <button class="edit-button" >Edit</button>
+    </div>
+  </div>
+  
