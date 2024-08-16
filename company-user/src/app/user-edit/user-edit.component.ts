@@ -3,25 +3,38 @@ import { DataService } from '../shared/service/data.service';
 import { APIConst } from '../shared/constants/api-const';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { DatePipe } from '@angular/common';
+import { Location } from '@angular/common';
+
+
 
 @Component({
   selector: 'app-user-edit',
   templateUrl: './user-edit.component.html',
-  styleUrls: ['./user-edit.component.css'] // Corrected property name
+  styleUrls: ['./user-edit.component.css'], // Corrected property name
+  providers: [DatePipe]
 })
 export class UserEditComponent implements OnInit , OnDestroy {
   userData: any = {};
   userId: string | null = null; 
   subscriptions: Subscription[] = [];
+  isEditMode = false;
 
 
-  constructor(private dataService: DataService, private route: ActivatedRoute) {}
+
+
+  constructor(private dataService: DataService, private route: ActivatedRoute, private datePipe: DatePipe , private location: Location) {}
 
   ngOnInit(): void {
     this.userId = this.route.snapshot.paramMap.get('userId');
+    this.userData.dob = this.datePipe.transform(this.userData.dob, 'yyyy-MM-dd');
     if (this.userId) {
       this.viewUser();
     }
+  }
+
+  toggleEdit(): void {
+    this.isEditMode = !this.isEditMode;
   }
 
   viewUser(): void {
@@ -38,6 +51,43 @@ export class UserEditComponent implements OnInit , OnDestroy {
     });
     this.subscriptions.push(userViewSubscription);
   }
+
+  updateUser(): void {
+    if (this.userId) {
+      let updateSubscription = this.dataService.postData(APIConst.UPDATE_USER + this.userId, this.userData).subscribe({
+        next: (response) => {
+          console.log('User updated successfully');
+        },
+        error: (err) => {
+          console.error('Error updating user', err);
+        }
+      });
+      this.subscriptions.push(updateSubscription);
+    }
+  }
+
+
+  
+  deleteUser():
+   void {
+  //   if (this.userId) {
+  //     let deleteSubscription = this.dataService.postData(APIConst.DELETE_USER + this.userId).subscribe({
+  //       next: (response) => {
+  //         console.log('User deleted successfully');
+  //       },
+  //       error: (err) => {
+  //         console.error('Error deleting user', err);
+  //       }
+  //     });
+  //     this.subscriptions.push(deleteSubscription);
+  //   }
+  }
+
+
+  goBack(): void {
+    this.location.back();
+  }
+  
 
   ngOnDestroy(): void {
     this.subscriptions.forEach(subscription => subscription.unsubscribe());

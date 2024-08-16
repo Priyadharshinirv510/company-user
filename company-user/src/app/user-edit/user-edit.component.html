@@ -1,12 +1,59 @@
-<div class="user-details-container">
+<form #userForm="ngForm" class="user-details-form">
     <div class="user-details-card">
-      <h2>{{ userData?.firstName }} {{ userData?.lastName }}</h2>
-      <p><strong>User ID:</strong> {{ userData?.userId }}</p>
-      <p><strong>Email:</strong> {{ userData?.email }}</p>
-      <p><strong>Designation:</strong> {{ userData?.designation }}</p>
-      <p><strong>Date of Birth:</strong> {{ userData?.dob | date: 'longDate' }}</p>
-      <p><strong>Status:</strong> {{ userData?.active ? 'Active' : 'Inactive' }}</p>
-      <button class="edit-button" >Edit</button>
-    </div>
-  </div>
+      <h2>{{ userData.firstName }} {{ userData.lastName }}</h2>
   
+      <div>
+        <label for="userId"><strong>User ID:</strong></label>
+        <input id="userId"  type="text" name="userId" [(ngModel)]="userData.userId" [disabled]="!isEditMode" />
+      </div>
+  
+      <div>
+        <label for="email"><strong> Email:</strong></label>
+        <input id="email" type="email" name="email" [(ngModel)]="userData.email" [disabled]="!isEditMode" />
+      </div>
+  
+      <div>
+        <label for="designation"><strong>Designation:</strong></label>
+        <input id="designation" name="designation" [(ngModel)]="userData.designation" [disabled]="!isEditMode"  type="text" />
+      </div>
+  
+      <div>
+        <label for="dob"><strong>Date of Birth:</strong></label>
+        <input id="dob" name="dob" [(ngModel)]="userData.dob" [disabled]="!isEditMode" type="date" />
+      </div>
+  
+      <!-- <div>
+        <label for="status">Status:</label>
+        <select id="status" name="status" [(ngModel)]="userData.status" [disabled]="!isEditMode">
+          <option value="true">Active</option>
+          <option value="false">Inactive</option>
+        </select>
+      </div>
+   -->
+
+   <label for="active">Active:</label>
+   <label class="switch">
+     <input type="checkbox" id="active" name="active" [(ngModel)]="userData.active" [disabled]="!isEditMode">
+     <span class="slider round"></span>
+   </label>
+
+
+    <div class="buttons">
+      <button *ngIf="!isEditMode" type="button" (click)="toggleEdit()" class="edit-button">
+        Edit
+      </button>
+
+      <button *ngIf="isEditMode" type="button" (click)="deleteUser()" class="delete-button">
+        Delete
+      </button>
+  
+      <button *ngIf="isEditMode" type="submit" (click)="updateUser()" class="update-button">
+        Update
+      </button>
+    </div>
+    </div>
+  </form>
+
+  <div class="back-arrow-container">
+    <span class="back-arrow" (click)="goBack()">&#11178;</span>
+  </div>
