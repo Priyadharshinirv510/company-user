@@ -7,6 +7,7 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { CompanyListComponent } from './compsny-list/company-list/company-list.component';
 import { UserEditComponent } from './user-edit/user-edit.component';
+import { CompanyEditComponent } from './company-edit/company-edit.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/landing', pathMatch: 'full' },
@@ -16,7 +17,8 @@ const routes: Routes = [
   { path: 'aboutUs', component: AboutUsComponent },
   {path: 'userlist', component : UserListComponent},
   {path: 'companylist', component : CompanyListComponent},
-  { path: 'users/getUserById/:userId', component: UserEditComponent }
+  { path: 'users/getUserById/:userId', component: UserEditComponent },
+  {path: 'companies/getCompanyById/:companyId' ,component: CompanyEditComponent}
 ];
 
 @NgModule({

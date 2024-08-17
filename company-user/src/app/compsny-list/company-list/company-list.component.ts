@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { DataService } from '../../shared/service/data.service';
 import { APIConst } from '../../shared/constants/api-const';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-company-list',
@@ -14,7 +15,7 @@ export class CompanyListComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[] = [];
   searchResult: any = null;
 
-  constructor(private dataService: DataService) {}
+  constructor(private dataService: DataService, private router: Router) {}
 
   ngOnInit(): void {
     this.getCompanyList();
@@ -57,6 +58,11 @@ export class CompanyListComponent implements OnInit, OnDestroy {
       this.searchResult = null;
     }
   }
+
+  navigateToCompanyDetail(companyId: any) {
+    this.router.navigate([`/companies/getCompanyById/${companyId}`]);
+  }
+
 
   ngOnDestroy(): void {
     this.subscriptions.forEach(subscription => subscription.unsubscribe());

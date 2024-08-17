@@ -1,0 +1,49 @@
+<form #companyForm="ngForm" class="company-details-form">
+    <div class="company-details-card">
+      <h2>{{ companyData.companyName }}</h2>
+  
+      <div>
+        <label for="companyId"><strong>Company ID:</strong></label>
+        <input id="companyId" type="text" name="companyId" [(ngModel)]="companyData.companyId" [disabled]="!isEditMode" />
+      </div>
+  
+      <div>
+        <label for="companyName"><strong>Company Name:</strong></label>
+        <input id="companyName" name="companyName" [(ngModel)]="companyData.companyName" [disabled]="!isEditMode" type="text" />
+      </div>
+  
+      <div>
+        <label for="companyAddress"><strong>Company Address:</strong></label>
+        <input id="companyAddress" name="companyAddress" [(ngModel)]="companyData.companyAddress" [disabled]="!isEditMode" type="text" />
+      </div>
+  
+      <div>
+        <label for="latitude"><strong>Latitude:</strong></label>
+        <input id="latitude" name="latitude" [(ngModel)]="companyData.coordinates.latitude" [disabled]="!isEditMode" type="text" />
+      </div>
+  
+      <div>
+        <label for="longitude"><strong>Longitude:</strong></label>
+        <input id="longitude" name="longitude" [(ngModel)]="companyData.coordinates.longitude" [disabled]="!isEditMode" type="text" />
+      </div>
+  
+      <div class="buttons">
+        <button *ngIf="!isEditMode" type="button" (click)="toggleEdit()" class="edit-button">
+          Edit
+        </button>
+  
+        <button *ngIf="isEditMode" type="button" (click)="deleteCompany()" class="delete-button">
+          Delete
+        </button>
+  
+        <button *ngIf="isEditMode" type="submit" (click)="updateCompany()" class="update-button">
+          Update
+        </button>
+      </div>
+    </div>
+  </form>
+  
+  <div class="back-arrow-container">
+    <span class="back-arrow" (click)="goBack()">&#11178;</span>
+  </div>
+  

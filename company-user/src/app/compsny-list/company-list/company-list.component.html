@@ -19,7 +19,7 @@
           </thead>
           <tbody>
             <!-- Display the search result as the first row if available -->
-            <tr *ngIf="searchResult">
+            <tr *ngIf="searchResult" (click) = navigateToCompanyDetail(searchResult.companyId)>
               <td>{{ searchResult.companyId }}</td>
               <td>{{ searchResult.companyName }}</td>
               <td>{{ searchResult.companyAddress }}</td>
@@ -27,7 +27,7 @@
   
             <!-- Display the rest of the filtered company list -->
             <ng-container *ngFor="let company of filteredCompanyList">
-              <tr *ngIf="!searchResult || searchResult.companyId !== company.companyId">
+              <tr *ngIf="!searchResult || searchResult.companyId !== company.companyId" (click) = navigateToCompanyDetail(company.companyId)>
                 <td>{{ company?.companyId }}</td>
                 <td>{{ company?.companyName }}</td>
                 <td>{{ company?.companyAddress }}</td>

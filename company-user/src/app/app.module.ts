@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CompanyListComponent } from './compsny-list/company-list/company-list.component';
 import { UserEditComponent } from './user-edit/user-edit.component';
+import { CompanyEditComponent } from './company-edit/company-edit.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { UserEditComponent } from './user-edit/user-edit.component';
     RegisterCompanyComponent,
     UserListComponent,
     CompanyListComponent,
-    UserEditComponent
+    UserEditComponent,
+    CompanyEditComponent
   ],
   imports: [
     BrowserModule,
