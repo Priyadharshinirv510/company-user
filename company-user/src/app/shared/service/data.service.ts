@@ -17,9 +17,8 @@ export class DataService {
 
   postData(url: any, data: any) {
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    let httpParam = new HttpParams();
     return this.http
-      .post(`${this.apiUrl}${url}?${httpParam}`, data, {
+      .post(`${this.apiUrl}${url}`, data, {
         headers: headers,
       })
       .pipe(map((response) => response));
@@ -58,5 +57,13 @@ export class DataService {
       .pipe(map((res) => res));
   }
 
+  putData(url: any, data: any) {
+    let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http
+      .put(`${this.apiUrl}${url}`, data, {
+        headers: headers,
+      })
+      .pipe(map((response) => response));
+  }
 
 }

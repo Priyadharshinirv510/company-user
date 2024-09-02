@@ -26,8 +26,9 @@ export class UserEditComponent implements OnInit , OnDestroy {
   constructor(private dataService: DataService, private route: ActivatedRoute, private datePipe: DatePipe , private location: Location) {}
 
   ngOnInit(): void {
+    // console.log(this.userData.dob)
     this.userId = this.route.snapshot.paramMap.get('userId');
-    this.userData.dob = this.datePipe.transform(this.userData.dob, 'yyyy-MM-dd');
+   
     if (this.userId) {
       this.viewUser();
     }
@@ -42,6 +43,8 @@ export class UserEditComponent implements OnInit , OnDestroy {
       next: (response) => {
         if (response) {
           this.userData = response;
+          const date = new Date(this.userData.dob);
+          this.userData.dob = this.datePipe.transform(date, 'yyyy-MM-dd');
         }
       },
       error: (err) => {
@@ -54,7 +57,7 @@ export class UserEditComponent implements OnInit , OnDestroy {
 
   updateUser(): void {
     if (this.userId) {
-      let updateSubscription = this.dataService.postData(APIConst.UPDATE_USER + this.userId, this.userData).subscribe({
+      let updateSubscription = this.dataService.putData(APIConst.UPDATE_USER, this.userData).subscribe({
         next: (response) => {
           console.log('User updated successfully');
         },
